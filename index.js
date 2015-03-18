@@ -43,7 +43,7 @@ exports.syncCompile = function(folderPath) {
 		if(file !== '.' && file !== '..') {
 			fpath = folderPath + '/' + file
 			ftxt = fs.readFileSync(fpath)
-			res[fname] = jade.compileClient(ftxt, { name: fname })
+			res[fname] = minify(jade.compileClient(ftxt, { name: fname }))
 		}
 		
 	}
