@@ -24,6 +24,7 @@
 	,"dependencies": {
 		"lodash": "*"
 		,"jade": "*"
+		,"uglify-js": "1.x"
 	}
 	,"devDependencies": {
 		"mocha": "^2.0.0"

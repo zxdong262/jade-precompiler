@@ -6,28 +6,25 @@
 var
 jade = require('jade')
 ,_ = require('lodash')
+,uglify = require('uglify-js')
 ,fs = require('fs')
-,toPromiseFunc = function(thunk) {
-	return function() {
 
-		//arguments to array
-		var $_len = arguments.length
-		var args = new Array($_len)
-		for(var $_i = 0; $_i < $_len; ++$_i) {
-			args[$_i] = arguments[$_i]
-		}
+function minify(src) {
 
-		var ctx = this
-		return new Promise(function(resolve, reject) {
-			args.push(function(err, val){
-				if(err) reject(err)
-				else resolve(val)
-			})
-			thunk.apply(ctx, args)
-		})
-	}
+	var jsp = uglify.parser
+	,pro = uglify.uglify
+	,ast = jsp.parse(src)
+
+	ast = pro.ast_mangle(ast, {
+		except: ['exports', 'module', 'require', 'define']
+	})
+
+	ast = pro.ast_squeeze(ast)
+	ast = pro.gen_code(ast)
+
+	return ast
+
 }
-
 
 exports.syncCompile = function(folderPath) {
 
@@ -38,15 +35,21 @@ exports.syncCompile = function(folderPath) {
 	,res = {}
 	,ftxt
 	,file
+	,runtimejs
+	,fname
 	for(;i < len;i ++) {
 		file = files[i]
+		fname = file.split('.')[0]
 		if(file !== '.' && file !== '..') {
 			fpath = folderPath + '/' + file
 			ftxt = fs.readFileSync(fpath)
-			res[file] = jade.compile(ftxt).toString()
+			res[fname] = jade.compileClient(ftxt, { name: fname })
 		}
 		
 	}
+	runtimejs = fs.readFileSync(__dirname + '/node_modules/jade/runtime.js').toString()
+	res.runtimejs = minify(runtimejs)
+
 	return res
 
 }
