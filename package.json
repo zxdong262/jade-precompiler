@@ -1,0 +1,39 @@
+{
+	"name": "jade-precompiler"
+	,"version": "0.1.1"
+	,"description": "comile a folder of jade template to javascript code text so you can insert them to jade template later."
+	,"main": "index.js"
+	,"scripts": {
+		"test": "mocha --reporter spec"
+	}
+	,"repository": {
+		"type": "git"
+		,"url": "https://github.com/zxdong262/jade-precompiler.git"
+	}
+	,"keywords": [
+		"validate"
+	]
+	,"author": {
+		"name": "ZHAO Xudong"
+		,"email": "zxdong@gmail.com"
+		,"url": "http://html5beta.com"
+	}
+	,"scripts": {
+		"start": "node app.js"
+	}
+	,"dependencies": {
+		"lodash": "*"
+		,"jade": "*"
+	}
+	,"devDependencies": {
+		"mocha": "^2.0.0"
+	}
+	,"license": "MIT"
+	,"bugs": {
+		"url": "https://github.com/zxdong262/jade-precompiler/issues"
+	}
+	,"homepage": "https://github.com/zxdong262/jade-precompiler"
+	,"engines": {
+		"node": ">= 0.11.13"
+	}
+}
