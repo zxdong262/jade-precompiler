@@ -11,7 +11,9 @@
 		,"url": "https://github.com/zxdong262/jade-precompiler.git"
 	}
 	,"keywords": [
-		"validate"
+		"jade"
+		,"jade-precompiler"
+		,"compile"
 	]
 	,"author": {
 		"name": "ZHAO Xudong"
@@ -22,8 +24,7 @@
 		"start": "node --harmony app.js"
 	}
 	,"dependencies": {
-		"lodash": "*"
-		,"jade": "*"
+		"jade": "*"
 		,"uglify-js": "1.x"
 	}
 	,"devDependencies": {
