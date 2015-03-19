@@ -1,6 +1,6 @@
 {
 	"name": "jade-precompiler"
-	,"version": "0.1.1"
+	,"version": "0.0.1"
 	,"description": "comile a folder of jade template to javascript code text so you can insert them to jade template later."
 	,"main": "index.js"
 	,"scripts": {
@@ -19,7 +19,7 @@
 		,"url": "http://html5beta.com"
 	}
 	,"scripts": {
-		"start": "node app.js"
+		"start": "node --harmony app.js"
 	}
 	,"dependencies": {
 		"lodash": "*"
@@ -28,6 +28,9 @@
 	}
 	,"devDependencies": {
 		"mocha": "^2.0.0"
+		,"koa": "*"
+		,"koa-jade": "*"
+		,"lodash": "*"
 	}
 	,"license": "MIT"
 	,"bugs": {

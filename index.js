@@ -5,7 +5,6 @@
 //globs
 var
 jade = require('jade')
-,_ = require('lodash')
 ,uglify = require('uglify-js')
 ,fs = require('fs')
 
@@ -26,7 +25,7 @@ function minify(src) {
 
 }
 
-exports.syncCompile = function(folderPath) {
+exports.syncCompile = function(folderPath, prefix) {
 
 	var files = fs.readdirSync(folderPath)
 	,len = files.length
@@ -39,7 +38,7 @@ exports.syncCompile = function(folderPath) {
 	,fname
 	for(;i < len;i ++) {
 		file = files[i]
-		fname = file.split('.')[0]
+		fname = (prefix || '_') + file.replace(/[\.\-\s]/g, '_')
 		if(file !== '.' && file !== '..') {
 			fpath = folderPath + '/' + file
 			ftxt = fs.readFileSync(fpath)

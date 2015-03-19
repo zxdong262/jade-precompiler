@@ -1,0 +1,28 @@
+doctype html
+html
+	head
+		title jade-precompiler test
+	body
+		#wrapper
+			h1 jade-precompiler test
+			h2 output templates
+			#out1
+			#out2
+
+		- _.each(temps, function(value, key) {
+			script.
+				!{value}
+		- })
+		
+		script.
+			var dt1 = {
+				gg: ' template1 loaded'
+			}
+			,dt2 = {
+				gg1: ' template2 loaded'
+			}
+			,ht1 = _t1_d_g_h_jade(dt1)
+			,ht2 = _t2_jade(dt2)
+
+			document.getElementById('out1').innerHTML = ht1
+			document.getElementById('out2').innerHTML = ht2
