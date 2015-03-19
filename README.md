@@ -7,6 +7,10 @@ comile a folder of jade template to javascript code text so you can insert them 
 npm install jade-precompiler
 ```
 
+## note
+- can include, but do not use subfolder
+- `.`, `-`, ` ` in file name will be replace with `_` to build a safe function name
+
 ## use
 
 ```javascript
@@ -178,6 +182,10 @@ node --harmony app
 ```
 
 then visit <a href='http://localhost:8523' target='_blank'>http://localhost:8523</a>
+
+## changelog
+
+- 0.0.2 add include support
 
 ## license
 

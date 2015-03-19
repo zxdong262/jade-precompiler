@@ -7,6 +7,7 @@ var
 jade = require('jade')
 ,uglify = require('uglify-js')
 ,fs = require('fs')
+,path = require('path')
 
 function minify(src) {
 
@@ -42,7 +43,10 @@ exports.syncCompile = function(folderPath, prefix) {
 		if(file !== '.' && file !== '..') {
 			fpath = folderPath + '/' + file
 			ftxt = fs.readFileSync(fpath)
-			res[fname] = minify(jade.compileClient(ftxt, { name: fname }))
+			res[fname] = minify(jade.compileClient(ftxt, {
+				name: fname
+				,filename: fpath
+			}))
 		}
 		
 	}
