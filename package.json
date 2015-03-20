@@ -1,6 +1,6 @@
 {
 	"name": "jade-precompiler"
-	,"version": "0.0.3"
+	,"version": "0.1.0"
 	,"description": "comile a folder of jade template to javascript code text so you can insert them to jade template later."
 	,"main": "index.js"
 	,"scripts": {

@@ -15,6 +15,19 @@ describe('jade-precompiler', function() {
 		assert(temps.runtimejs && temps.kk_t1_d_g_h_jade && temps.kk_t2_jade && /function kk_t2_jade/.test(temps.kk_t2_jade))
 	})
 
+	it('with beautify option = true', function() {
+		var prefix = 'kk_'
+		var beautify = true
+		var temps = syncCompiler(__dirname + '/jade-templates', prefix, beautify)
+		assert(
+			temps.runtimejs && 
+			temps.kk_t1_d_g_h_jade && 
+			temps.kk_t2_jade && 
+			/function kk_t2_jade/.test(temps.kk_t2_jade) &&
+			/    /.test(temps.kk_t2_jade)
+		)
+	})
+
 
 	//end
 })

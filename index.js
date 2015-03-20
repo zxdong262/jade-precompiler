@@ -9,7 +9,7 @@ jade = require('jade')
 ,fs = require('fs')
 ,path = require('path')
 
-function minify(src) {
+function minify(src, beautify) {
 
 	var jsp = uglify.parser
 	,pro = uglify.uglify
@@ -20,13 +20,15 @@ function minify(src) {
 	})
 
 	ast = pro.ast_squeeze(ast)
-	ast = pro.gen_code(ast)
+	ast = pro.gen_code(ast, {
+		beautify: beautify || false
+	})
 
 	return ast
 
 }
 
-exports.syncCompile = function(folderPath, prefix) {
+exports.syncCompile = function(folderPath, prefix, beautify) {
 
 	var files = fs.readdirSync(folderPath)
 	,len = files.length
@@ -46,12 +48,12 @@ exports.syncCompile = function(folderPath, prefix) {
 			res[fname] = minify(jade.compileClient(ftxt, {
 				name: fname
 				,filename: fpath
-			}))
+			}), beautify)
 		}
 		
 	}
 	runtimejs = fs.readFileSync(__dirname + '/node_modules/jade/runtime.js').toString()
-	res.runtimejs = minify(runtimejs)
+	res.runtimejs = minify(runtimejs, beautify)
 
 	return res
 

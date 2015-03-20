@@ -27,8 +27,15 @@ var syncCompiler = require('jade-precompiler').syncCompile
 var temps1 = syncCompiler(__dirname + '/jade-templates')
 assert(temps1.runtimejs && temps1._t1_d_g_h_jade && temps1._t2_jade && /function _t2_jade/.test(temps1._t2_jade))
 
-var prefix = 'kk_' //default prefix = '_'
-var temps2 = syncCompiler(__dirname + '/jade-templates', prefix)
+//options
+
+//custom prefix, default prefix = '_'
+var prefix = 'kk_' 
+
+//if true, output the beaytified version of js code,default is false
+var beautify = true 
+
+var temps2 = syncCompiler(__dirname + '/jade-templates', prefix, beautify)
 assert(temps2.runtimejs && temps2.kk_t1_d_g_h_jade && temps2.kk_t2_jade && /function kk_t2_jade/.test(temps2.kk_t2_jade))
 
 /*
@@ -185,6 +192,7 @@ then visit <a href='http://localhost:8523' target='_blank'>http://localhost:8523
 
 ## changelog
 
+- 0.1.0 add beatify option, output beautified version of js code for debug
 - 0.0.2 add include support
 
 ## license
